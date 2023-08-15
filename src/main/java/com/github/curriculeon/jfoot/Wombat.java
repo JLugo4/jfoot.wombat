@@ -30,11 +30,15 @@ public class Wombat extends Herbivore {
                 this.turnLeft(); // if no leaf and can move, turn left.
                 this.move();
                 this.turnLeft();
-            } else {
+            } else if (!canMove()){
                 if (getDirection() == WEST)
                     turnRight();
                 this.move();
                 turnRight();
+            } if(isAtTopLeft()){
+                this.setDirection(SOUTH);
+            } if(isAtBottomLeft()){
+                this.setDirection(EAST);
             }
         }
     }
@@ -48,7 +52,12 @@ public class Wombat extends Herbivore {
 
 
     private boolean isAtTopLeft() {
+
         return !canMove(WEST) && !canMove(NORTH);
+    }
+
+    private boolean isAtBottomLeft(){
+        return !canMove(WEST) && !canMove(SOUTH);
     }
 
 
